@@ -1,0 +1,411 @@
+body{
+	background-color: #DCDCDC;
+	font-family: "Gill Sans Extrabold", Helvetica, sans-serif ;
+}
+
+#container{
+	
+	margin-left:100px;
+	margin-right:100px;
+	width:1600px;
+	
+	
+}
+#topbar{
+	width:1700px;
+}
+
+#login{
+	float:left;
+	margin-left:80px;
+	width:680px;
+
+}
+
+
+#logo{
+	
+	font-size:110px;
+	text-align:center;
+	float:left;
+	margin-top:auto;
+	height:142px;
+	text-decoration:none;
+	font-weight: 900;
+
+}
+
+.loginType{
+	margin:10px;
+	width:105px;
+	height:120px;
+	background-color: #d94348;
+	float:left;
+}
+.loginType:hover{
+	background-color:#c83237;
+}
+.fb{
+	margin:10px;
+	width:105px;
+	height:120px;
+	background-color: #4668b3;
+	float:left;
+}
+.fb:hover{
+	background-color:#3557a2;
+}
+.google{
+	margin:10px;
+	width:105px;
+	height:120px;
+	background-color: #d95333;
+	float:left;
+}
+.google:hover{
+	background-color:#c84222;
+}
+.tw{
+	margin:10px;
+	width:105px;
+	height:120px;
+	background-color: #3095d3;
+	float:left;
+}
+.tw:hover{
+	background-color:#2084c2;
+}
+a.sociallink{
+	color:#ffffff;
+	text-decoration:none;
+	display:block;
+	width:105px;
+	height:120px;
+	
+}
+
+#strip{
+	height:10px;
+	width:1500px;
+	background-color:red;
+	margin-left:70px;
+	margin-top:25px;
+}
+
+#search{
+	width:1500px;
+	height:350px;
+	margin-left:110px;
+	margin-top:100px;
+	
+}
+#searchWindow{
+	float:left;
+	width:500px;
+	height:350px;
+	margin-right:90px;
+	border-style:solid;
+	font-size:30px;
+	margin-left:80px;
+	
+	
+}
+#searchImage{
+	float:left;
+	width:700px;
+	height:300px;
+}
+.searchText{
+	float:left;
+	width:150px;
+	height:50px;
+	padding:10px;
+	font-size:25px;
+	margin-left:95px;
+	
+	
+
+}
+#boxTop{
+	margin-left:10px;
+	padding:10px;
+	margin-bottom:10px;
+	font-weight: 700;
+	margin-left:60px;
+}
+.searchBox{
+	float:left;
+	width:180px;
+	height:20px;
+	
+	
+}
+.searchBox select{
+	background-color:#808080;
+	font-size:25px;
+	padding:10px;
+	color:white;
+	
+}
+
+.button1 {
+  background-color: #808080; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  width:200px;
+  margin-left:150px;
+  margin-top:10px;
+}
+.button1:hover{
+	background-color:#696969;
+}
+
+.trips{
+	margin-top:70px;
+	margin-left:260px;
+	width:1200px;
+	height:380px;
+	
+	
+}
+.tripsBar{
+	text-align:center;
+	color:black;
+	font-size:30px;
+	margin-bottom:20px;
+	font-weight:700;
+}
+
+.singleTrip{
+	float:left;
+	height:250px;
+	width:250px;
+
+	margin-right:50px;
+}
+
+a.singleTripLink{
+	color:#ffffff;
+	text-decoration:none;
+	display:block;
+	width:250px;
+	height:250px;
+	
+}
+
+.singleTrip:hover{
+	transform:scale(1.1);
+}
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+  transition: .3s ease;
+}
+.lastTrip{
+	float:left;
+	height:250px;
+	width:250px;
+	background-color:yellow;
+	
+}
+.lastTrip:hover{
+	transform:scale(1.1);
+}
+
+.tripSignature{
+	text-align:center;
+	padding:10px;
+	font-size:25px;
+	color:black;
+}
+
+.tripsFood{
+	margin-top:100px;
+
+	width:1300px;
+	height:250px;
+	margin-bottom:100px;
+
+	margin-right:250px;
+
+}
+.singleFoodTrip{
+	float:left;
+	height:180px;
+	width:180px;
+	background-color:#808080;
+	margin-right:50px;
+
+	font-weight:700;
+	font-size:100px;
+	padding:10px;
+	text-align:center;
+}
+.lastFoodTrip{
+	float:left;
+	height:180px;
+	width:180px;
+	background-color:#808080;
+	font-weight:700;
+	font-size:100px;
+	padding:10px;
+	text-align:center;
+	margin-right:0;
+}
+a.singleFoodTripLink{
+	color:#ffffff;
+	text-decoration:none;
+	display:block;
+	width:180px;
+	height:180px;
+	
+}
+
+.singleFoodTrip:hover{
+	background-color:#696969;
+	transform:scale(1.05);
+}
+.lastFoodTrip:hover{
+	background-color:#696969;
+	transform:scale(1.05);
+}
+
+
+.tripsFood{
+	margin-left:26px;
+
+}
+td {
+
+  font-size:20px;
+  text-align:center;
+  padding: 5px;
+  border-bottom: 1px solid #696969;
+}
+tr:hover {background-color: #A9A9A9;}
+th {
+
+  font-size:25px;
+  text-align:center;
+  padding: 5px;
+  border-bottom: 1px solid #696969;
+  font-weight:600;
+}
+
+
+
+table{
+	width:100%;
+	
+}
+
+#tableDiv{
+	width:1160px;
+	margin-top:70px;
+	margin-bottom:70px;
+	margin-left:260px;
+}
+.button2 {
+  background-color: #A9A9A9; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+ 
+}
+.button2:hover{
+	background-color:#696969;
+}
+#bestTrips{
+	width:1160px;
+	height:1300px;
+	margin-left:260px;
+	
+}
+.bestTrip{
+	
+	
+	width:1160px;
+	height:300px;
+	border:solid;
+	margin-bottom:50px;
+	
+}
+.btImage{
+	float:left;
+	margin-right:0;
+	border-right:dotted;
+}
+.btDescription{
+	float:left;
+	border-right:dotted;
+	
+	height:300px;
+	width:400px;
+}
+
+.td2 {
+
+  font-size:20px;
+  text-align:left;
+ 
+  padding: 5px;
+  border:none;
+ 
+}
+.tr2:hover {
+	background-color:#DCDCDC;
+	
+}
+
+
+.th2 {
+
+  font-size:25px;
+  text-align:left;
+  padding: 5px;
+  border-bottom: none;
+  font-weight:800;
+
+
+}
+
+
+.table2{
+	width:95%;
+	border:none;
+	margin-top:20px;
+	text-align:center;
+	margin-left:20px;
+	
+	
+}
+.btPrice{
+	float:left;
+	height:300px;
+	width:250px;
+	text-align:center;
+	font-size:25px;
+	font-weight:700;
+	
+}
+
+
+
+
+
