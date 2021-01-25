@@ -1,0 +1,138 @@
+body{
+	background-color: #DCDCDC;
+	font-family: "Gill Sans Extrabold", Helvetica, sans-serif ;
+}
+
+#container{
+	
+	
+	width:1600px;
+	
+	
+	
+	
+}
+
+.topbar{
+	width:1100px;
+	height:120px;
+	background-color:#ADD8E6;
+	text-align:center;
+	margin-top:20px;
+	border-radius: 25px;
+	margin-left:70px;
+	
+	
+}
+.title{
+	font-size:50px;
+	
+}
+.subtitle{
+	font-size:25px;
+	
+}
+
+.photoBox{
+	width:500px;
+	height:300px;
+	margin-left:370px;
+	margin-top:70px;
+	margin-bottom:70px;
+	
+}
+
+.infoBox{
+	width:900px;
+	height:500px;
+	margin-left:170px;
+	
+}
+.infoBar{
+	margin-bottom:35px;
+	margin-top:35px;
+}
+
+.infoIcon{
+	border-radius: 15px;
+	border:solid;
+	float:left;
+	padding:10px;
+	height:120px;
+	width:120px;
+	margin-right:10px;
+	text-align:center;
+}
+
+.infoText{
+	border-radius: 15px;
+	border:solid;
+	float:left;
+	padding:10px;
+	height:120px;
+	width:770px;
+	
+}
+.fa-calendar-times{
+	font-size:80px;
+	padding:10px;
+}
+
+.fa-crosshairs{
+	font-size:80px;
+	padding:10px;
+}
+
+.fa-hotel{
+	font-size:70px;
+	padding:10px;
+}
+.fa-suitcase-rolling{
+	font-size:80px;
+	padding:10px;
+}
+
+.fa-dollar-sign{
+	border-radius: 15px;
+	border:solid;
+	padding:10px;
+}
+.textLine{
+	font:20px;
+	margin-left:20px;
+	font-weight:600;
+	margin-bottom:7px;
+}
+
+.smallIcon{
+	float:left;
+	font-size:30px;
+	text-align:center;
+	margin-bottom:20px;
+	
+	
+}
+
+.tile{
+	width:280px;
+	height:75px;
+	border-radius: 15px;
+	border:solid;
+	float:left;
+	margin-left:110px;
+	padding:10px;
+	
+}
+.shortTextInfo{
+	float:left;
+	font-size:20px;
+	padding:10px;
+}
+
+
+
+
+
+
+
+

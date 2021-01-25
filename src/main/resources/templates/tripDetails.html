@@ -6,7 +6,7 @@
     <meta name="description" content="Stworze dla Ciebie wyjatkowa strone www! Zartudnij programiste webowego itp itd......."/>
     <meta name="keywords" content="zamow, strone, tworzenie, www, progrmiasta, portfolio"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" type="text/css"/>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style2.css}" type="text/css"/>
     <link rel="stylesheet" href="../static/css/fontello.css" th:href="@{css/fontello.css}" type="text/css"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Lato:wght@100&display=swap" rel="stylesheet">
@@ -15,92 +15,252 @@
 
 </head>
 
+
+
+
+<!--<p>Data rozpoczęcia:</p>-->
+<!--<p th:text="${trip.dateFrom}"></p>-->
+
+<!--</br>-->
+
+<!--<p>Data zakończenia:</p>-->
+<!--<p th:text="${trip.dateTo}"></p>-->
+<!--</br>-->
+
+<!--<p>Czas trwania</p>-->
+<!--<p th:text="${trip.duration.toDays()}"></p>-->
+<!--</br>-->
+
+<!--<p>Cena dorosły</p>-->
+<!--<p th:text="${trip.priceForAdult}"></p>-->
+<!--</br>-->
+
+<!--<p>Cena dziecko</p>-->
+<!--<p th:text="${trip.priceForChild}"></p>-->
+<!--</br>-->
+
+<!--<p>Typ wycieczki</p>-->
+<!--<p th:text="${trip.tripType.description}"></p>-->
+<!--</br>-->
+
+<!--<p>Typ wyżywienia</p>-->
+<!--<p th:text="${trip.tripAlimentationEnum.description}"></p>-->
+<!--</br>-->
+
+<!--<p>Hotel</p>-->
+<!--<div th:each="hotel: ${hotelsForTrip}">-->
+
+<!--<p>Nazwa Hotelu:</p>-->
+<!--<p th:text="${hotel.name}"></p>-->
+
+<!--<p>Standard Hotelu:</p>-->
+<!--<p th:text="${hotel.standard.desciprtion}"></p>-->
+
+<!--    <p>Opis Hotelu:</p>-->
+<!--    <p th:text="${hotel.description}"></p>-->
+<!--    <p>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+<!--    </br>-->
+<!--</div>-->
+
+
+
+<!--</div>-->
+
+
+<!--</br>-->
+
+
+
+<!--<p>Opis wycieczki</p>-->
+<!--<p th:text="${trip.description}"></p>-->
+<!--</br>-->
+
+<!--<p>Status</p>-->
+<!--<p th:text="${trip.status}"></p>-->
+<!--</br>-->
+
+<!--<p>Limit ludzi</p>-->
+<!--<p th:text="${trip.peopleLimit}"></p>-->
+<!--</br>-->
+
+<!--<p>Cel kontynent</p>-->
+<!--<p th:text="${trip.destination.continent}"></p>-->
+<!--</br>-->
+
+<!--<p>Cel kraj</p>-->
+<!--<p th:text="${trip.destination.country}"></p>-->
+<!--</br>-->
+
+<!--<p>Cel miasto</p>-->
+<!--<p th:text="${trip.destination.city}"></p>-->
+<!--</br>-->
+
+<!--<p>Lotnisko</p>-->
+<!--<p th:text="${trip.destination.airport}"></p>-->
+
+<!--<div class="btImage">-->
+<!--<img src="../static/img/bt1.jpg" th:src="@{${trip.imgUrl}}">-->
+<!--</div>-->
+
+
+
 <body>
+<div id="container">
+
+    <div class="topbar">
+        <div class="title"  th:text="${trip.destination.country}">Hiszpania</div>
+        <div class="subtitle" th:text="${trip.tripAlimentationEnum.description}">All inclusive</div>
+    </div>
+
+    <div class="photoBox">
+        <img src="../static/img/bt1.jpg" th:src="@{${trip.imgUrl}}">
+    </div>
+
+    <div class="infoBox">
+
+        <div class="tiles">
+
+            <div class="tile">
+
+                <div class="smallIcon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+
+                <div class="shortTextInfo" th:text="|Cena dorosły: ${trip.priceForAdult}|">
+                    Cena dorosły: 600 zł
+                </div>
+
+                <div style="clear:both"></div>
+
+            </div>
+
+            <div class="tile">
+
+                <div class="smallIcon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+
+                <div class="shortTextInfo" th:text="|Cena dziecko: ${trip.priceForChild}|">
+                    Cena dziecko: 300 zł
+                </div>
+
+                <div style="clear:both"></div>
+
+            </div>
+
+            <div style="clear:both"></div>
+
+        </div>
+
+        <div class="infoBar">
+
+            <div class="infoIcon">
+                <i class="far fa-calendar-times"></i>
+            </div>
+
+            <div class="infoText">
+
+                <div class="textLine" th:text="|Data rozpoczęcia: ${trip.dateFrom}|">
+                    Początek wycieczki: 02.02.2021
+                </div>
+
+                <div class="textLine" th:text="|Data zakończenia: ${trip.dateTo}|">
+                    Koniec wycieczki: 20.02.2021
+                </div>
+
+                <div class="textLine" th:text="|Czas trwania: ${trip.duration.toDays()}|">
+                    Czas trwania: 10dni
+                </div>
+
+            </div>
+
+            <div style="clear:both"></div>
+
+        </div>
+
+        <div class="infoBar">
+
+            <div class="infoIcon">
+                <i class="fas fa-crosshairs"></i>
+            </div>
+
+            <div class="infoText">
+
+                <div class="textLine">
+                    Kontynent: Azja
+                </div>
+
+                <div class="textLine">
+                    Kraj: Tajlanda
+                </div>
+
+                <div class="textLine">
+                    Miasto: Bangkok
+                </div>
+
+            </div>
+            <div style="clear:both"></div>
+
+        </div>
+
+        <div class="infoBar">
+
+            <div class="infoIcon">
+                <i class="fas fa-hotel"></i>
+            </div>
+
+            <div class="infoText">
+
+                <div class="textLine">
+                    Hotel: Marriot
+                </div>
+
+                <div class="textLine">
+                    Standard: 5 - gwiazdkowy
+                </div>
+
+                <div class="textLine">
+                    Opis hotelu
+                </div>
+
+            </div>
+            <div style="clear:both"></div>
+
+        </div>
+
+        <div class="infoBar">
+
+            <div class="infoIcon">
+                <i class="fas fa-suitcase-rolling"></i>
+            </div>
+
+            <div class="infoText">
+
+                <div class="textLine">
+                    Typ wycieczki: Wakacyjna
+                </div>
+
+                <div class="textLine">
+                    Standard wyżywienia: All inclusive
+                </div>
+
+                <div class="textLine">
+                    Opis wycieczki
+                </div>
+
+                <div style="clear:both"></div>
+
+            </div>
+
+        </div>
 
 
-<p>Data rozpoczęcia:</p>
-<p th:text="${trip.dateFrom}"></p>
 
-</br>
-
-<p>Data zakończenia:</p>
-<p th:text="${trip.dateTo}"></p>
-</br>
-
-<p>Czas trwania</p>
-<p th:text="${trip.duration.toDays()}"></p>
-</br>
-
-<p>Cena dorosły</p>
-<p th:text="${trip.priceForAdult}"></p>
-</br>
-
-<p>Cena dziecko</p>
-<p th:text="${trip.priceForChild}"></p>
-</br>
-
-<p>Typ wycieczki</p>
-<p th:text="${trip.tripType.description}"></p>
-</br>
-
-<p>Typ wyżywienia</p>
-<p th:text="${trip.tripAlimentationEnum.description}"></p>
-</br>
-
-<p>Hotel</p>
-<div th:each="hotel: ${hotelsForTrip}">
-
-<p>Nazwa Hotelu:</p>
-<p th:text="${hotel.name}"></p>
-
-<p>Standard Hotelu:</p>
-<p th:text="${hotel.standard.desciprtion}"></p>
-
-    <p>Opis Hotelu:</p>
-    <p th:text="${hotel.description}"></p>
-    <p>------------------------------------------------</p>
-    </br>
-</div>
+    </div>
 
 
 
-</div>
 
-
-</br>
-
-
-
-<p>Opis wycieczki</p>
-<p th:text="${trip.description}"></p>
-</br>
-
-<p>Status</p>
-<p th:text="${trip.status}"></p>
-</br>
-
-<p>Limit ludzi</p>
-<p th:text="${trip.peopleLimit}"></p>
-</br>
-
-<p>Cel kontynent</p>
-<p th:text="${trip.destination.continent}"></p>
-</br>
-
-<p>Cel kraj</p>
-<p th:text="${trip.destination.country}"></p>
-</br>
-
-<p>Cel miasto</p>
-<p th:text="${trip.destination.city}"></p>
-</br>
-
-<p>Lotnisko</p>
-<p th:text="${trip.destination.airport}"></p>
-
-<div class="btImage">
-<img src="../static/img/bt1.jpg" th:src="@{${trip.imgUrl}}">
-</div>
 
 
 
