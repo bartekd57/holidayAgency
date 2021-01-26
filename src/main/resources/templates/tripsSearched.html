@@ -2,7 +2,7 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>WycieczkiTypowe</title>
+    <title>Wycieczki Wyszukane</title>
     <meta name="description" content="Najlepsza agencja podróżnicza"/>
     <meta name="keywords" content="spędź z nami super wakacje"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -22,13 +22,13 @@
     <div id="bestTrips">
 
 
-        <div class="tripsBar" th:text="|Wycieczki typu:    ${tripType}|" >Wycieczki wyszukane po typie
+        <div class="tripsBar"  >Wycieczki wyszukane
         </div>
 
-        <div class="bestTrip" th:each="tripByType : ${tripsByTypes}">
+        <div class="bestTrip" th:each="trip : ${tripsSearched}">
 
             <div class="btImage">
-                <img src="../static/img/bt1.jpg" th:src="@{${tripByType.imgUrl}}">
+                <img src="../static/img/bt1.jpg" th:src="@{${trip.imgUrl}}">
             </div>
 
             <div class="btDescription">
@@ -36,20 +36,20 @@
                 <table class="table table2">
 
                     <tr class="tr tr2">
-                        <th class="th th2" th:text="${tripByType.destination.country}" >Hiszpania, All Inclusive</th>
+                        <th class="th th2" th:text="${trip.destination.country}" >Hiszpania, All Inclusive</th>
                     </tr>
 
                     <tr class="tr tr2"><td class="td td2">
                         <ul>
-                            <li th:text="|Typ wycieczki: ${tripType}|">Wycieczka wakacyjna</li>
-                            <li th:text="${tripByType.description}">Super odpoczynek nad morzem</li>
-                            <li th:text="|Standard wyżywienia: ${tripByType.tripAlimentationEnum}|">Standard All Inclusive</li>
-                            <li th:text="|Początek wycieczki: ${tripByType.dateFrom}|">Hotel 5 gwiazdkowy</li>
+                            <li th:text="|Typ wycieczki: ${trip.tripType}|">Wycieczka wakacyjna</li>
+                            <li th:text="${trip.description}">Super odpoczynek nad morzem</li>
+                            <li th:text="|Standard wyżywienia: ${trip.tripAlimentationEnum}|">Standard All Inclusive</li>
+                            <li th:text="|Początek wycieczki: ${trip.dateFrom}|">Hotel 5 gwiazdkowy</li>
                         </ul>
                     </td></tr>
 
                     <tr class="tr tr2">
-                        <th class="th th2" th:text="|Status: ${tripByType.status}|">Status: promocyjna</th>
+                        <th class="th th2" th:text="|Status: ${trip.status}|">Status: promocyjna</th>
                     </tr>
 
                 </table>
@@ -58,10 +58,10 @@
             <div class="btPrice">
                 <p></p>
                 .
-                <p th:text="|Cena: ${tripByType.priceForAdult}|"></p>
+                <p th:text="|Cena: ${trip.priceForAdult}|"></p>
 
                 <p></p>
-                <a href="#" th:href="@{|/trip/${tripByType.id}|}">
+                <a href="#" th:href="@{|/trip/${trip.id}|}">
                     <button class="button button2">Do oferty</button></a>
             </div>
 

@@ -2,11 +2,11 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Jan Kowalski - Portfolio</title>
-    <meta name="description" content="Stworze dla Ciebie wyjatkowa strone www! Zartudnij programiste webowego itp itd......."/>
-    <meta name="keywords" content="zamow, strone, tworzenie, www, progrmiasta, portfolio"/>
+    <title>Wycieczka</title>
+    <meta name="description" content="Najlepsza agencja podróżnicza"/>
+    <meta name="keywords" content="spędź z nami super wakacje"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style2.css}" type="text/css"/>
+    <link rel="stylesheet" href="../static/css/style2.css" th:href="@{css/style2.css}" type="text/css"/>
     <link rel="stylesheet" href="../static/css/fontello.css" th:href="@{css/fontello.css}" type="text/css"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Lato:wght@100&display=swap" rel="stylesheet">
@@ -14,94 +14,6 @@
 
 
 </head>
-
-
-
-
-<!--<p>Data rozpoczęcia:</p>-->
-<!--<p th:text="${trip.dateFrom}"></p>-->
-
-<!--</br>-->
-
-<!--<p>Data zakończenia:</p>-->
-<!--<p th:text="${trip.dateTo}"></p>-->
-<!--</br>-->
-
-<!--<p>Czas trwania</p>-->
-<!--<p th:text="${trip.duration.toDays()}"></p>-->
-<!--</br>-->
-
-<!--<p>Cena dorosły</p>-->
-<!--<p th:text="${trip.priceForAdult}"></p>-->
-<!--</br>-->
-
-<!--<p>Cena dziecko</p>-->
-<!--<p th:text="${trip.priceForChild}"></p>-->
-<!--</br>-->
-
-<!--<p>Typ wycieczki</p>-->
-<!--<p th:text="${trip.tripType.description}"></p>-->
-<!--</br>-->
-
-<!--<p>Typ wyżywienia</p>-->
-<!--<p th:text="${trip.tripAlimentationEnum.description}"></p>-->
-<!--</br>-->
-
-<!--<p>Hotel</p>-->
-<!--<div th:each="hotel: ${hotelsForTrip}">-->
-
-<!--<p>Nazwa Hotelu:</p>-->
-<!--<p th:text="${hotel.name}"></p>-->
-
-<!--<p>Standard Hotelu:</p>-->
-<!--<p th:text="${hotel.standard.desciprtion}"></p>-->
-
-<!--    <p>Opis Hotelu:</p>-->
-<!--    <p th:text="${hotel.description}"></p>-->
-<!--    <p>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
-<!--    </br>-->
-<!--</div>-->
-
-
-
-<!--</div>-->
-
-
-<!--</br>-->
-
-
-
-<!--<p>Opis wycieczki</p>-->
-<!--<p th:text="${trip.description}"></p>-->
-<!--</br>-->
-
-<!--<p>Status</p>-->
-<!--<p th:text="${trip.status}"></p>-->
-<!--</br>-->
-
-<!--<p>Limit ludzi</p>-->
-<!--<p th:text="${trip.peopleLimit}"></p>-->
-<!--</br>-->
-
-<!--<p>Cel kontynent</p>-->
-<!--<p th:text="${trip.destination.continent}"></p>-->
-<!--</br>-->
-
-<!--<p>Cel kraj</p>-->
-<!--<p th:text="${trip.destination.country}"></p>-->
-<!--</br>-->
-
-<!--<p>Cel miasto</p>-->
-<!--<p th:text="${trip.destination.city}"></p>-->
-<!--</br>-->
-
-<!--<p>Lotnisko</p>-->
-<!--<p th:text="${trip.destination.airport}"></p>-->
-
-<!--<div class="btImage">-->
-<!--<img src="../static/img/bt1.jpg" th:src="@{${trip.imgUrl}}">-->
-<!--</div>-->
-
 
 
 <body>
@@ -186,15 +98,15 @@
 
             <div class="infoText">
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Kontynent: ${trip.destination.continent}|">
                     Kontynent: Azja
                 </div>
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Kraj: ${trip.destination.country}|">
                     Kraj: Tajlanda
                 </div>
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Miasto: ${trip.destination.city}|">
                     Miasto: Bangkok
                 </div>
 
@@ -203,7 +115,7 @@
 
         </div>
 
-        <div class="infoBar">
+        <div class="infoBar" th:each="hotel: ${hotelsForTrip}">
 
             <div class="infoIcon">
                 <i class="fas fa-hotel"></i>
@@ -211,15 +123,15 @@
 
             <div class="infoText">
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Hotel: ${hotel.name}|">
                     Hotel: Marriot
                 </div>
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Standard hotelu: ${hotel.standard.desciprtion}|">
                     Standard: 5 - gwiazdkowy
                 </div>
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Opis hotelu: ${hotel.description}|">
                     Opis hotelu
                 </div>
 
@@ -236,15 +148,15 @@
 
             <div class="infoText">
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Typ wycieczki: ${trip.tripType.description}|">
                     Typ wycieczki: Wakacyjna
                 </div>
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Standard: ${trip.tripAlimentationEnum.description}|">
                     Standard wyżywienia: All inclusive
                 </div>
 
-                <div class="textLine">
+                <div class="textLine" th:text="|Opis wycieczki: ${trip.description}|">
                     Opis wycieczki
                 </div>
 
@@ -258,7 +170,7 @@
 
     </div>
 
-
+</div>
 
 
 

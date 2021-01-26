@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="container">
+
+    <form action="#" th:action="@{|/newTrip|}" method="post" style="width: 60%">
+
+        <p>Podaj datę rozpoczęcia wycieczki</p>
+        <input type="datetime-local" id="start" name="start">
+        <br>
+
+        <p>Podaj datę zakończenia wycieczki</p>
+        <input type="datetime-local" id="end" name="end">
+
+        <p>Cena za osobe dorosłą</p>
+        <input type="text" id="adultPrice" name="adultPrice" placeholder="cena za dorosłego">
+
+        <p>Cena za dziecko</p>
+        <input type="text" id="childPrice" name="childPrice" placeholder="cena za dziecko">
+
+        <p>Wybierz typ wycieczki</p>
+        <div th:each="tripType: ${tripTypes}">
+
+            <input type="radio" id="tripType.name()" name="type" value="tripType.name()">
+            <label for="tripType.name()" th:text="${tripType.description}">Wakacyjna</label><br>
+        </div>
+
+        <p>Rodzaj wyżywienia:</p>
+        <div th:each="tripAlimentation: ${tripAlimentations}">
+
+            <input type="radio" id="tripAlimentation.name()" name="alimentation" value="tripAlimentation.name()">
+            <label for="tripAlimentation.name()" th:text="${tripAlimentation.description}">All Inclusive</label><br>
+        </div>
+
+        <p>Dodaj krótki opis wycieczki</p>
+        <input type="text" id="description" name="description" placeholder="opis wycieczki">
+
+        <p>Podaj ilość miejsc na wycieczce</p>
+        <input type="text" id="limit" name="limit" placeholder="limit uczestników">
+
+        <p>Wybierz kontynent</p>
+        <div>
+            <select type="text" name="continent" id="continent">
+                <option value="Europa">Europa</option>
+                <option value="Azja">Azja</option>
+                <option value="Ameryka Północna">Ameryka Pł</option>
+                <option value="Ameryka Południowa">Ameryka Pd</option>
+                <option value="Afryka">Afryka</option>
+                <option value="Australia">Australia</option>
+            </select>
+        </div>
+
+        <p>Podaj kraj docelowy</p>
+        <input type="text" id="country" name="country" placeholder="kraj">
+
+        <p>Podaj miasto docelowe</p>
+        <input type="text" id="city" name="city" placeholder="miasto">
+
+        <p>Podaj lotnisko docelowe</p>
+        <input type="text" id="airport" name="airport" placeholder="lotnisko">
+
+        <p>Podaj url do fotki</p>
+        <input type="text" id="url" name="url" placeholder="adres url">
+
+        <button class="button button1">Dodaj wycieczke</button>
+
+    </form>
+
+</div>
+
+
+
+
+</body>
+</html>

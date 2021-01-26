@@ -5,20 +5,21 @@ import com.travel_agency.dto.TripDTO;
 import com.travel_agency.mapper.HotelMapper;
 import com.travel_agency.mapper.TripMapper;
 import com.travel_agency.model.destination.Destination;
-import com.travel_agency.model.hotel.Hotel;
 import com.travel_agency.model.trip.Trip;
 import com.travel_agency.model.trip.TripAlimentationEnum;
 import com.travel_agency.model.trip.TripStatusEnum;
 import com.travel_agency.model.trip.TripTypeEnum;
+import com.travel_agency.repository.DestinationRepository;
 import com.travel_agency.repository.TripRepository;
 import com.travel_agency.repository.UserRepository;
 import com.travel_agency.weather_checker.WeatherDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class TripService {
@@ -27,12 +28,15 @@ public class TripService {
     UserRepository userRepository;
     private Map<Long, Integer> map = new HashMap<>();
     WeatherDataService weatherDataService;
+    DestinationRepository destinationRepository;
 
     @Autowired
-    public TripService(TripRepository tripRepository, UserRepository userRepository, WeatherDataService weatherDataService) {
+    public TripService(TripRepository tripRepository, UserRepository userRepository,
+                       WeatherDataService weatherDataService, DestinationRepository destinationRepository) {
         this.tripRepository = tripRepository;
         this.userRepository = userRepository;
         this.weatherDataService = weatherDataService;
+        this.destinationRepository = destinationRepository;
     }
 
     public List<TripDTO> getAllTrips() {
@@ -120,5 +124,42 @@ public class TripService {
                 .collect(Collectors.toList());
     }
 
+    public List<TripDTO> getTripBySearchBox(LocalDateTime dateFrom, LocalDateTime dateTo, String continent) {
+
+        return tripRepository.findAllByDateFromAfterAndDateToBeforeAndDestination_Continent(dateFrom, dateTo, continent)
+                .orElseThrow(NoSuchElementException::new)
+                .stream()
+                .map(TripMapper.INSTANCE::tripToDto)
+                .collect(Collectors.toList());
+    }
+
+    public TripDTO createAndSaveNewTrip(LocalDateTime dateFrom, LocalDateTime dateTo, BigDecimal priceAdult, BigDecimal priceChild,
+                                        TripTypeEnum type, TripAlimentationEnum alimentation, String description, Integer limit, String url,
+                                        String continent, String country, String city, String airport){
+
+        Destination destination = new Destination();
+        destination.setContinent(continent);
+        destination.setCountry(country);
+        destination.setCity(city);
+        destination.setAirport(airport);
+        destinationRepository.save(destination);
+
+        Trip trip = new Trip();
+        trip.setDateFrom(dateFrom);
+        trip.setDateTo(dateTo);
+        trip.setPriceForAdult(priceAdult);
+        trip.setPriceForChild(priceChild);
+        trip.setTripType(type);
+        trip.setTripAlimentationEnum(alimentation);
+        trip.setDescription(description);
+        trip.setStatus(TripStatusEnum.ACTIVE);
+        trip.setPeopleLimit(limit);
+        trip.setDestination(destination);
+        trip.setImgUrl(url);
+
+        tripRepository.save(trip);
+
+        return TripMapper.INSTANCE.tripToDto(trip);
+    }
 
 }

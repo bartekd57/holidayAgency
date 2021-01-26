@@ -2,17 +2,17 @@ package com.travel_agency.controller;
 
 import com.travel_agency.dto.HotelDTO;
 import com.travel_agency.dto.TripDTO;
+import com.travel_agency.model.trip.Trip;
 import com.travel_agency.model.trip.TripAlimentationEnum;
 import com.travel_agency.model.trip.TripTypeEnum;
 import com.travel_agency.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,6 +63,77 @@ public class TripController {
         return "tripsByType";
 
     }
+
+    @PostMapping(value = "/tripSearch")
+    public String getTripsFromSearchBox(@RequestParam String start, @RequestParam String end,
+                                               @RequestParam String continent, Model model){
+        LocalDateTime startDate = LocalDateTime.parse(start);
+        LocalDateTime endDate = LocalDateTime.parse(end);
+
+        List<TripDTO> tripBySearchBox = tripService.getTripBySearchBox(startDate, endDate, continent);
+        model.addAttribute("tripsSearched", tripBySearchBox);
+
+        return "tripsSearched";
+    }
+
+    @GetMapping("/newTrip")
+    public String createNewTrip(Model model){
+        List<TripTypeEnum> tripTypeEnums = Arrays.asList(TripTypeEnum.values());
+        List<TripAlimentationEnum> tripAlimentationEnums = Arrays.asList(TripAlimentationEnum.values());
+        Trip trip = new Trip();
+
+
+        model.addAttribute("tripTypes", tripTypeEnums);
+        model.addAttribute("tripAlimentations", tripAlimentationEnums);
+
+        return "addTrip";
+
+    }
+
+    @PostMapping("/newTrip")
+    public String addNewTrip(@RequestParam String start, @RequestParam String end, @RequestParam String adultPrice, @RequestParam String childPrice,
+                             @RequestParam String type, @RequestParam String alimentation, @RequestParam String description,
+                             @RequestParam Integer limit, @RequestParam String continent, @RequestParam String country,
+                             @RequestParam String city, @RequestParam String airport, @RequestParam String url){
+
+        LocalDateTime startTime = LocalDateTime.parse(start);
+        LocalDateTime endTime = LocalDateTime.parse(end);
+        BigDecimal adultPriceTag = new BigDecimal(adultPrice);
+        BigDecimal childPriceTag = new BigDecimal(childPrice);
+        TripTypeEnum typeEnum = TripTypeEnum.valueOf(type);
+        TripAlimentationEnum alimentationEnum = TripAlimentationEnum.valueOf(alimentation);
+
+        TripDTO tripCreated = tripService.createAndSaveNewTrip(startTime, endTime, adultPriceTag,
+                childPriceTag, typeEnum, alimentationEnum, description,
+                limit, url, continent, country, city, airport);
+
+        return "message";
+    }
+
+
+
+
+
+
+//    @ResponseBody
+//    @PostMapping(value = "/tripSearch", produces = "application/json")
+//    public List<TripDTO> getTripsFromSearchBox(@RequestParam LocalDateTime start, @RequestParam LocalDateTime end,
+//                                        @RequestParam String continent, Model model){
+//        List<TripDTO> tripBySearchBox = tripService.getTripBySearchBox(start, end, continent);
+//        model.addAttribute("trips", tripBySearchBox);
+//
+//        return tripBySearchBox;
+//    }
+
+//    @ResponseBody
+//    @PostMapping(value = "/searchTrip", produces = "application/json")
+//    public String getTripsFromSearchBox(@RequestParam LocalDateTime start, @RequestParam LocalDateTime end,
+//                                        @RequestParam String continent, Model model){
+//        List<TripDTO> tripBySearchBox = tripService.getTripBySearchBox(start, end, continent);
+//        model.addAttribute("trips", tripBySearchBox);
+//
+//        return "xxxx";
+//    }
 
 
 //    @GetMapping(value = "/tripsByAlimentation")

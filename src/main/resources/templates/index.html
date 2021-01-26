@@ -2,9 +2,9 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Jan Kowalski - Portfolio</title>
-    <meta name="description" content="Stworze dla Ciebie wyjatkowa strone www! Zartudnij programiste webowego itp itd......."/>
-    <meta name="keywords" content="zamow, strone, tworzenie, www, progrmiasta, portfolio"/>
+    <title>MainPage</title>
+    <meta name="description" content="Najlepsza agencja podróżnicza"/>
+    <meta name="keywords" content="spędź z nami super wakacje"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" type="text/css"/>
     <link rel="stylesheet" href="../static/css/fontello.css" th:href="@{css/fontello.css}" type="text/css"/>
@@ -63,52 +63,48 @@
 
         <div id="searchWindow">
 
+            <form action="#" th:action="@{|/tripSearch|}" method="post" >
             <div id="boxTop">Znajdź wakacje marzeń!</div>
 
-            <div class="searchText">Kiedy?</div>
+            <div class="searchText">Początek</div>
 
             <div class="searchBox">
-                <select >
 
-                    <option th:each="collect: ${collects}" th:text="${collect.name}">Opcja 1</option>
-
-
-<!--                    <option th:text="${trip.status}">Opcja 1</option>-->
-
-
-
-<!--                    <option>Opcja 1</option>-->
-<!--                    <option>Opcja 2</option>-->
-<!--                    <option>Opcja 3</option>-->
-                </select></div>
+                    <input type="datetime-local" id="start" name="start">
+<!--                           value="2020-02-11"-->
+<!--                           min="2020-01-25" max="2020-12-31">-->
+                </div>
 
             <div style="clear:both"></div>
 
-            <div class="searchText">Ile osób?</div>
+            <div class="searchText">Koniec</div>
 
             <div class="searchBox">
-                <select>
-                    <option>Opcja 1</option>
-                    <option>Opcja 2</option>
-                    <option>Opcja 3</option>
-                </select>
+                <input type="datetime-local" id="end" name="end">
+<!--                       value="2020-02-11"-->
+<!--                       min="2020-01-25" max="2020-12-31">-->
+
             </div>
 
             <div style="clear:both"></div>
 
             <div class="searchText">Dokąd?</div>
             <div class="searchBox">
-                <select>
-                    <option>Opcja 1</option>
-                    <option>Opcja 2</option>
-                    <option>Opcja 3</option>
+                <select type="text" name="continent" id="continent">
+                    <option value="Europa">Europa</option>
+                    <option value="Azja">Azja</option>
+                    <option value="Ameryka Północna">Ameryka Pł</option>
+                    <option value="Ameryka Południowa">Ameryka Pd</option>
+                    <option value="Afryka">Afryka</option>
+                    <option value="Australia">Australia</option>
                 </select></div>
 
             <div style="clear:both"></div>
 
-            <a href="http://google.com">
+
                 <button class="button button1">Szukaj</button>
-            </a>
+
+            </form>
         </div>
 
 
