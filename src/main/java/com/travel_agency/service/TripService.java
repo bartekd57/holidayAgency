@@ -156,6 +156,7 @@ public class TripService {
         trip.setPeopleLimit(limit);
         trip.setDestination(destination);
         trip.setImgUrl(url);
+        trip.setCounter(0);
 
         tripRepository.save(trip);
 
