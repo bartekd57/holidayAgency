@@ -135,7 +135,7 @@ public class TripService {
 
     public TripDTO createAndSaveNewTrip(LocalDateTime dateFrom, LocalDateTime dateTo, BigDecimal priceAdult, BigDecimal priceChild,
                                         TripTypeEnum type, TripAlimentationEnum alimentation, String description, Integer limit, String url,
-                                        String continent, String country, String city, String airport){
+                                        String continent, String country, String city, String airport) {
 
         Destination destination = new Destination();
         destination.setContinent(continent);
@@ -161,5 +161,26 @@ public class TripService {
 
         return TripMapper.INSTANCE.tripToDto(trip);
     }
+
+    public TripTypeEnum getTypeValueFromEnumName(String type) {
+
+        for (TripTypeEnum value : TripTypeEnum.values()) {
+            if (type.equals(value.name()))
+                return value;
+
+        }
+        throw new NoSuchElementException();
+    }
+
+    public TripAlimentationEnum getAlimentationValueFromEnumName(String alimentation) {
+        for (TripAlimentationEnum tripAlimentationEnum : TripAlimentationEnum.values()) {
+            if (alimentation.equals(tripAlimentationEnum.name())) {
+                return tripAlimentationEnum;
+
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
 
 }

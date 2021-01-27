@@ -100,8 +100,22 @@ public class TripController {
         LocalDateTime endTime = LocalDateTime.parse(end);
         BigDecimal adultPriceTag = new BigDecimal(adultPrice);
         BigDecimal childPriceTag = new BigDecimal(childPrice);
-        TripTypeEnum typeEnum = TripTypeEnum.valueOf(type);
-        TripAlimentationEnum alimentationEnum = TripAlimentationEnum.valueOf(alimentation);
+//        TripTypeEnum typeEnum=TripTypeEnum.SUMMER;
+//        TripAlimentationEnum alimentationEnum = TripAlimentationEnum.AI;
+//
+//        for (TripTypeEnum value : TripTypeEnum.values()) {
+//            if(type.equals(value.name()))
+//                typeEnum=value;
+//        }
+
+        TripTypeEnum typeEnum = tripService.getTypeValueFromEnumName(type);
+        TripAlimentationEnum alimentationEnum = tripService.getAlimentationValueFromEnumName(alimentation);
+
+        for (TripAlimentationEnum tripAlimentationEnum : TripAlimentationEnum.values()) {
+            if(alimentation.equals(tripAlimentationEnum.name())){
+              alimentationEnum=tripAlimentationEnum;
+            }
+        }
 
         TripDTO tripCreated = tripService.createAndSaveNewTrip(startTime, endTime, adultPriceTag,
                 childPriceTag, typeEnum, alimentationEnum, description,
