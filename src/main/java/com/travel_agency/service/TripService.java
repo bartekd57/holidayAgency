@@ -165,22 +165,20 @@ public class TripService {
 
     public TripTypeEnum getTypeValueFromEnumName(String type) {
 
-        for (TripTypeEnum value : TripTypeEnum.values()) {
-            if (type.equals(value.name()))
-                return value;
+        return Arrays.stream(TripTypeEnum.values())
+                .filter(a -> a.name().equals(type))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
 
-        }
-        throw new NoSuchElementException();
     }
 
     public TripAlimentationEnum getAlimentationValueFromEnumName(String alimentation) {
-        for (TripAlimentationEnum tripAlimentationEnum : TripAlimentationEnum.values()) {
-            if (alimentation.equals(tripAlimentationEnum.name())) {
-                return tripAlimentationEnum;
 
-            }
-        }
-        throw new NoSuchElementException();
+        return Arrays.stream(TripAlimentationEnum.values())
+                .filter(a -> a.name().equals(alimentation))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
+
     }
 
 
