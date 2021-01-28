@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>Poszło zajebiście</h1>
+<h1 th:text="${message}">Sukces</h1>
 
+<br>
+<div>
+    <a href="#" th:href="@{/}">
+<button class="button button1">Powrót do strony głównej</button>
+    </a>
+</div>
 </body>
 </html>

@@ -15,6 +15,7 @@ import com.travel_agency.repository.UserRepository;
 import com.travel_agency.weather_checker.WeatherDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -179,6 +180,12 @@ public class TripService {
                 .findFirst()
                 .orElseThrow(NoSuchElementException::new);
 
+    }
+
+    public void setAttributesForMainPage(Model model){
+        model.addAttribute("trips", getAllTrips());
+        model.addAttribute("collects", Arrays.stream(TripStatusEnum.values()).collect(Collectors.toList()));
+        model.addAttribute("alimentationTypes", Arrays.stream(TripAlimentationEnum.values()).collect(Collectors.toList()));
     }
 
 
