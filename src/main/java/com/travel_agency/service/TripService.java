@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -55,9 +56,14 @@ public class TripService {
         setCounterValue(id);
         Optional<Trip> trip = tripRepository.findById(id);
 
+
         trip.orElse(null).getDestination().setWeatherTemplate(weatherDataService.getDataByCityName(trip.orElse(null).getDestination().getCity()));
 
-        return trip.map(TripMapper.INSTANCE::tripToDto).orElse(null);
+
+        TripDTO tripDTO = trip.map(TripMapper.INSTANCE::tripToDto).orElse(null);
+        tripDTO.setDuration(Duration.between(tripDTO.getDateFrom(), tripDTO.getDateTo()));
+
+        return tripDTO;
     }
 
     public List<TripDTO> getTripsForUser(Long userId) {
@@ -158,6 +164,7 @@ public class TripService {
         trip.setDestination(destination);
         trip.setImgUrl(url);
         trip.setCounter(0);
+        trip.setDuration(Duration.between(dateFrom,dateTo));
 
         tripRepository.save(trip);
 
@@ -171,6 +178,8 @@ public class TripService {
         model.addAttribute("collects", Arrays.stream(TripStatusEnum.values()).collect(Collectors.toList()));
         model.addAttribute("alimentationTypes", Arrays.stream(TripAlimentationEnum.values()).collect(Collectors.toList()));
     }
+
+
 
 
 }
