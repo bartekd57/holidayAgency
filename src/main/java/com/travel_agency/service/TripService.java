@@ -56,7 +56,6 @@ public class TripService {
         setCounterValue(id);
         Optional<Trip> trip = tripRepository.findById(id);
 
-
         trip.orElse(null).getDestination().setWeatherTemplate(weatherDataService.getDataByCityName(trip.orElse(null).getDestination().getCity()));
 
 
