@@ -164,23 +164,7 @@ public class TripService {
         return TripMapper.INSTANCE.tripToDto(trip);
     }
 
-    public TripTypeEnum getTypeValueFromEnumName(String type) {
 
-        return Arrays.stream(TripTypeEnum.values())
-                .filter(a -> a.name().equals(type))
-                .findFirst()
-                .orElseThrow(NoSuchElementException::new);
-
-    }
-
-    public TripAlimentationEnum getAlimentationValueFromEnumName(String alimentation) {
-
-        return Arrays.stream(TripAlimentationEnum.values())
-                .filter(a -> a.name().equals(alimentation))
-                .findFirst()
-                .orElseThrow(NoSuchElementException::new);
-
-    }
 
     public void setAttributesForMainPage(Model model){
         model.addAttribute("trips", getAllTrips());

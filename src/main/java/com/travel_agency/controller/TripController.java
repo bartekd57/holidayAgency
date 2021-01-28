@@ -33,9 +33,7 @@ public class TripController {
     @ResponseBody
     @GetMapping("/trips")
     public List<TripDTO> getAllTrips() {
-//        List<TripDTO> trips = tripService.getAllTrips();
-//        model.addAttribute("tripsList", trips);
-//        return "trips";
+
         return tripService.getAllTrips();
     }
 
@@ -83,10 +81,8 @@ public class TripController {
         List<TripAlimentationEnum> tripAlimentationEnums = Arrays.asList(TripAlimentationEnum.values());
         Trip trip = new Trip();
 
-
         model.addAttribute("tripTypes", tripTypeEnums);
         model.addAttribute("tripAlimentations", tripAlimentationEnums);
-
 
         return "addTrip";
 
@@ -94,7 +90,7 @@ public class TripController {
 
     @PostMapping("/newTrip")
     public String addNewTrip(@RequestParam String start, @RequestParam String end, @RequestParam String adultPrice, @RequestParam String childPrice,
-                             @RequestParam String type, @RequestParam String alimentation, @RequestParam String description,
+                             @RequestParam TripTypeEnum type, @RequestParam TripAlimentationEnum alimentation, @RequestParam String description,
                              @RequestParam Integer limit, @RequestParam String continent, @RequestParam String country,
                              @RequestParam String city, @RequestParam String airport, @RequestParam String url, Model model) {
 
@@ -103,11 +99,8 @@ public class TripController {
         BigDecimal adultPriceTag = new BigDecimal(adultPrice);
         BigDecimal childPriceTag = new BigDecimal(childPrice);
 
-        TripTypeEnum typeEnum = tripService.getTypeValueFromEnumName(type);
-        TripAlimentationEnum alimentationEnum = tripService.getAlimentationValueFromEnumName(alimentation);
-
         tripService.createAndSaveNewTrip(startTime, endTime, adultPriceTag,
-                childPriceTag, typeEnum, alimentationEnum, description,
+                childPriceTag, type, alimentation, description,
                 limit, url, continent, country, city, airport);
 
 
@@ -117,38 +110,6 @@ public class TripController {
         return "message";
     }
 
-
-//    @ResponseBody
-//    @PostMapping(value = "/tripSearch", produces = "application/json")
-//    public List<TripDTO> getTripsFromSearchBox(@RequestParam LocalDateTime start, @RequestParam LocalDateTime end,
-//                                        @RequestParam String continent, Model model){
-//        List<TripDTO> tripBySearchBox = tripService.getTripBySearchBox(start, end, continent);
-//        model.addAttribute("trips", tripBySearchBox);
-//
-//        return tripBySearchBox;
-//    }
-
-//    @ResponseBody
-//    @PostMapping(value = "/searchTrip", produces = "application/json")
-//    public String getTripsFromSearchBox(@RequestParam LocalDateTime start, @RequestParam LocalDateTime end,
-//                                        @RequestParam String continent, Model model){
-//        List<TripDTO> tripBySearchBox = tripService.getTripBySearchBox(start, end, continent);
-//        model.addAttribute("trips", tripBySearchBox);
-//
-//        return "xxxx";
-//    }
-
-
-//    @GetMapping(value = "/tripsByAlimentation")
-//    public String getTripByAlimentation(@RequestParam TripAlimentationEnum alimentation, Model model) {
-//        List<TripDTO> tripsByTripType = tripService.getTripByAlimentation(alimentation);
-//
-//        model.addAttribute("tripsByTypes", tripsByTripType);
-//        model.addAttribute("tripType", alimentation.name());
-//
-//        return "tripsByType";
-//
-//    }
 
 
     @GetMapping(value = "/trip/{id}")

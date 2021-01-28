@@ -26,14 +26,14 @@
         <p>Wybierz typ wycieczki</p>
         <div th:each="tripType: ${tripTypes}">
 
-            <input type="radio" id="tripType.name()" name="type" th:value="${tripType.name()}">
+            <input type="radio" id="tripType.name()" name="type" th:value="${tripType}">
             <label for="tripType.name()" th:text="${tripType.description}">Wakacyjna</label><br>
         </div>
 
         <p>Rodzaj wyżywienia:</p>
         <div th:each="tripAlimentation: ${tripAlimentations}">
 
-            <input type="radio" id="tripAlimentation.name()" name="alimentation" th:value="${tripAlimentation.name()}">
+            <input type="radio" id="tripAlimentation.name()" name="alimentation" th:value="${tripAlimentation}">
             <label for="tripAlimentation.name()" th:text="${tripAlimentation.description}">All Inclusive</label><br>
         </div>
 
