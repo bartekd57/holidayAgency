@@ -15,8 +15,10 @@ import com.travel_agency.repository.UserRepository;
 import com.travel_agency.weather_checker.WeatherDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -56,7 +58,11 @@ public class TripService {
 
         trip.orElse(null).getDestination().setWeatherTemplate(weatherDataService.getDataByCityName(trip.orElse(null).getDestination().getCity()));
 
-        return trip.map(TripMapper.INSTANCE::tripToDto).orElse(null);
+
+        TripDTO tripDTO = trip.map(TripMapper.INSTANCE::tripToDto).orElse(null);
+        tripDTO.setDuration(Duration.between(tripDTO.getDateFrom(), tripDTO.getDateTo()));
+
+        return tripDTO;
     }
 
     public List<TripDTO> getTripsForUser(Long userId) {
@@ -157,31 +163,22 @@ public class TripService {
         trip.setDestination(destination);
         trip.setImgUrl(url);
         trip.setCounter(0);
+        trip.setDuration(Duration.between(dateFrom,dateTo));
 
         tripRepository.save(trip);
 
         return TripMapper.INSTANCE.tripToDto(trip);
     }
 
-    public TripTypeEnum getTypeValueFromEnumName(String type) {
 
-        for (TripTypeEnum value : TripTypeEnum.values()) {
-            if (type.equals(value.name()))
-                return value;
 
-        }
-        throw new NoSuchElementException();
+    public void setAttributesForMainPage(Model model){
+        model.addAttribute("trips", getAllTrips());
+        model.addAttribute("collects", Arrays.stream(TripStatusEnum.values()).collect(Collectors.toList()));
+        model.addAttribute("alimentationTypes", Arrays.stream(TripAlimentationEnum.values()).collect(Collectors.toList()));
     }
 
-    public TripAlimentationEnum getAlimentationValueFromEnumName(String alimentation) {
-        for (TripAlimentationEnum tripAlimentationEnum : TripAlimentationEnum.values()) {
-            if (alimentation.equals(tripAlimentationEnum.name())) {
-                return tripAlimentationEnum;
 
-            }
-        }
-        throw new NoSuchElementException();
-    }
 
 
 }
